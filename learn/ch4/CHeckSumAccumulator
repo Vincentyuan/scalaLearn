@@ -1,0 +1,16 @@
+import scala.collection.mutable.Map
+
+object CheckSumAccumulator {
+	private vals cache = Map([String , Int )]
+	def calculate (s :  String ) : Int = 
+		if ( cache.contains(s))
+			cache(s)
+		else{
+			val acc = new CheckSumAccumulatr 
+			for ( c <- s )
+				acc.add(c.toByte)
+			val cs = acc.checkSum()
+			cache += (s -> cs) 
+			cs 
+		}
+}
